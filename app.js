@@ -1,20 +1,19 @@
-const inquirer = require("inquirer");
 const chalk = require("chalk");
-
-let questions = [
-  {
-    name: "name",
-    message: "What is your name?"
-  },
-  {
-    name: "phone",
-    message: "What is your phone number?"
-  }
-]
+const inquirer = require("inquirer");
+const { contacts, viewContacts, addContact } = require("./functions");
 
 inquirer
-  .prompt(questions)
+  .prompt({
+    name: "menu",
+    message: "What would you like to do?",
+    type: "list",
+    choices: ["Add a Contact", "View Contacts", "Quit"]
+  })
   .then(answers => {
-    let { name, phone } = answers;
-    console.log(chalk.red(name), phone);
+    let choice = answers.menu;
+    if(choice === "Add a Contact") {
+      addContact();
+    }
   });
+
+
