@@ -9,7 +9,7 @@ class Contact {
   }
 }
 
-function addContact() {
+function addContact(callback) {
   console.log("Adding a contact");
   let questions = [
     {
@@ -31,17 +31,26 @@ function addContact() {
       let { firstName, lastName, phoneNumber } = answers;
       console.log(answers);
       contacts.push(new Contact(firstName, lastName, phoneNumber));
-      console.log(`Successfully added ${firstName} ${lastName} to your address book`)
+
+      console.clear();
+
+      console.log(`Successfully added ${firstName} ${lastName} to your address book`);
+      
+      callback();
     })
 }
 
-function viewContacts() {
+function viewContacts(callback) {
+  console.clear();
   console.log("Displaying contacts");
   console.log(contacts);
+
+  callback();
 }
 
 module.exports = {
   contacts,
   Contact,
-  addContact
+  addContact,
+  viewContacts
 }
